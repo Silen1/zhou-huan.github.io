@@ -8,7 +8,7 @@ tags:
   - JavaScript
 ---
 
-前两篇博客（[一](https://zhou-huan.github.io/2018/12/09/how-dose-compiler-work1/)，[二](https://zhou-huan.github.io/2018/12/09/how-dose-compiler-work2/)）已经将源代码分析和分析结果转换的这两个过程写完了，还剩下最后一个过程 —— 新代码的生成。
+前两篇博客（[一](https://southrill.cn/2018/12/09/how-dose-compiler-work1/)，[二](https://southrill.cn/2018/12/09/how-dose-compiler-work2/)）已经将源代码分析和分析结果转换的这两个过程写完了，还剩下最后一个过程 —— 新代码的生成。
 
 ### 新代码的生成
 

@@ -36,7 +36,7 @@ function defineReactive(obj, key) {
 
 `dep` 是“依赖收集器”，属性 `key` 的 `getter setter` 都通过闭包引用着自己的 `dep`。`target` 仍然作为全局变量存在，中转依赖以帮助 `getter` 收集依赖。`setter` 会执行对应 `getter` 收集到的所有依赖，但如果发现设置的值与原值无异，则直接 `return`，什么也不做。
 
-这是直接从 [手抄Vue（一）—— 简单实现数据响应](https://zhou-huan.github.io/2018/11/04/learn-vue-source-code1/) 里拿过来的代码，但如果要封装一个功能完善、可复用性高的方法的话，肯定还要考虑一些边界条件与异常场景，比如，如果传递进来的属性本来就是不可配置的？这时就得加个判断：
+这是直接从 [手抄Vue（一）—— 简单实现数据响应](https://southrill.cn/2018/11/04/learn-vue-source-code1/) 里拿过来的代码，但如果要封装一个功能完善、可复用性高的方法的话，肯定还要考虑一些边界条件与异常场景，比如，如果传递进来的属性本来就是不可配置的？这时就得加个判断：
 ```js
 const property = Object.getOwnPropertyDescriptor(obj, key)
 if (property && !property.configurable) {

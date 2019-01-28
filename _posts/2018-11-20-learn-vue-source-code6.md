@@ -39,7 +39,7 @@ function myDelete(obj, key) {
   target()
 }
 ```
-如果检测到传进来的 `obj` 是数组，并且 `key` 是个有效的数组索引，那么使用 `splice` 方法直接将 `key` 位置上的数组元素删除即可，变异方法 `splice` 本身已经可以触发响应，所以删除之后 `return` 即可。其中，`isValidArrayIndex` 方法是 [Vue数据响应原理（五）—— 实现Vue.set](https://zhou-huan.github.io/2018/11/12/learn-vue-source-code5/) 中已经封装好的方法。
+如果检测到传进来的 `obj` 是数组，并且 `key` 是个有效的数组索引，那么使用 `splice` 方法直接将 `key` 位置上的数组元素删除即可，变异方法 `splice` 本身已经可以触发响应，所以删除之后 `return` 即可。其中，`isValidArrayIndex` 方法是 [Vue数据响应原理（五）—— 实现Vue.set](https://southrill.cn/2018/11/12/learn-vue-source-code5/) 中已经封装好的方法。
 
 将 `myDelete` 方法和前面文章中的代码放在一起，经过测试，功能是没有问题的。但同样，还要兼容异常与边界情况：
 

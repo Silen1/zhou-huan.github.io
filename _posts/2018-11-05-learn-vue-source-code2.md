@@ -8,7 +8,7 @@ tags:
   - Vue.js源码
 ---
 
-之前梳理 [手抄Vue（一）—— 简单实现数据响应](https://zhou-huan.github.io/2018/11/04/learn-vue-source-code1/) 时没有考虑数组的情况。
+之前梳理 [手抄Vue（一）—— 简单实现数据响应](https://southrill.cn/2018/11/04/learn-vue-source-code1/) 时没有考虑数组的情况。
 
 js 中数组有很多实例方法，其中有一部分会改变数组本身的值，比如 `push pop shift unshift` 等，这些方法被称为变异方法，这些变异方法也是 Vue 开发中常用的数组操作方法。那么要实现对数组的观测，首先要考虑的就是如何截获这些变异方法的调用。
 

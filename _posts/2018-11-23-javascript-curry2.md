@@ -8,7 +8,7 @@ tags:
   - JavaScript
 ---
 
-[上一篇的翻译](https://zhou-huan.github.io/2018/11/22/javascript-curry1/)中，原作者对于柯里化方法的最终实现是这个样子：
+[上一篇的翻译](https://southrill.cn/2018/11/22/javascript-curry1/)中，原作者对于柯里化方法的最终实现是这个样子：
 ```js
 // 定义占位符
 var _ = '_';

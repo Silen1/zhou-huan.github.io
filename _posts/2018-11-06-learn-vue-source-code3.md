@@ -8,7 +8,7 @@ tags:
   - Vue.js源码
 ---
 
-上篇 [Vue数据响应思路（二）—— 数组的响应](https://zhou-huan.github.io/2018/11/05/learn-vue-source-code2/) 中，没有考虑兼容性问题，`__proto__` 属性在 IE10 以及更低版本 IE 中是不支持的，需实现兼容方案。
+上篇 [Vue数据响应思路（二）—— 数组的响应](https://southrill.cn/2018/11/05/learn-vue-source-code2/) 中，没有考虑兼容性问题，`__proto__` 属性在 IE10 以及更低版本 IE 中是不支持的，需实现兼容方案。
 
 思路就是直接在数组实例上面定义新的同名变异方法作为“拦截器”：
 ```js

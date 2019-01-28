@@ -27,7 +27,7 @@ function mySet(target, key, val) {
   return val
 }
 ```
-首先使用 [Vue数据响应原理（四）—— 封装Observer类](https://zhou-huan.github.io/2018/11/08/learn-vue-source-code4/) 中定义好的方法 `defineReactive` 将属性转化为响应式属性，再将对应添加的值返回。
+首先使用 [Vue数据响应原理（四）—— 封装Observer类](https://southrill.cn/2018/11/08/learn-vue-source-code4/) 中定义好的方法 `defineReactive` 将属性转化为响应式属性，再将对应添加的值返回。
 
 但很容易看出来这里存在一个问题，`defineReactive` 确实是将属性转化成了响应式属性，但是，它没有像期望的那样同时为属性设置一个初始值，这样的话，只有在属性值发生变化时才会借由 `defineReactive` 中的 `setter` 为属性设置上新的值，否则它一直都是 `undefined`。那么，可以将 `defineReactive` 方法改造一下以解决这个问题：
 
