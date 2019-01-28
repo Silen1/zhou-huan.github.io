@@ -1,0 +1,201 @@
+---
+layout: default
+<!-- comments: true -->
+---
+
+<!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+{% include intro-header.html type='post' %}
+
+<!-- Post Content -->
+<article data-tag="{{page.tags[0]}}">
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+                <h1>{{page.title}}</h1>
+                <p class="article-date">{{ page.date  | date: "%Y.%m.%d" }}<span id="check-this-tag" data-tag={{page.tags[0]}}>查看文集&nbsp;&lt;{{page.tags[0]}}&gt;</span></p>
+                <!-- Multi-Lingual -->
+                <!-- {% if page.multilingual %} -->
+                <!-- Language Selector -->
+                <!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+                    <option value="0" selected> 中文 Chinese </option>
+                    <option value="1"> 英文 English </option>
+                </select> -->
+                <!-- {% endif %} -->
+
+				{{ content }}
+
+                <hr style="visibility: hidden;">
+                <hr style="visibility: hidden;">
+
+                <!-- {% if site.disqus_username %} -->
+                <!-- 必须翻墙 弃用 -->
+                <!-- disqus 评论框 start -->
+                <!-- <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div> -->
+                <!-- disqus 评论框 end -->
+                <!-- {% endif %} -->
+
+                <!-- 来必力评论系统 -->
+                <!-- 经测试 移动端体验极差 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC80MTY2OC8xODIxNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            if (!navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) { // web
+                                var j, e = d.getElementsByTagName(s)[0];
+
+                                if (typeof LivereTower === 'function') { return; }
+
+                                j = d.createElement(s);
+                                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                                j.async = true;
+
+                                e.parentNode.insertBefore(j, e);
+                            } else { // mobile
+                                // document.querySelector('#lv-container').innerHTML = '<p class="prompt-for-livere-title">温馨提示：</p><p class="prompt-for-livere-content">如果您需要使用评论功能，请前往PC端访问我的博客，地址是 <span>zhou-huan.github.io</span>，带来的不便敬请谅解！</p>'
+                            }
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript -- zhouhuan</noscript>
+                </div>
+            </div>
+
+    <!-- Side Catalog Container -->
+        {% if page.catalog %}
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+{% if page.mathjax %}
+  {% include mathjax_support.html %}
+{% endif %}
+
+<!-- {% if site.netease_comment %} -->
+<!-- 网易云跟帖JS代码 start -->
+<!-- <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "de25fc98a6fe48b3bc8a7ae765da99a0",
+    target: "cloud-tie-wrapper"
+  };
+  var yunManualLoad = true;
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script> -->
+<!-- 网易云跟帖JS代码 end -->
+<!-- {% endif %} -->
+
+<!-- 必须翻墙 弃用 -->
+<!-- {% if site.disqus_username %}
+    {% if page.comments %}
+        <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        */
+        var disqus_config = function () {
+            this.page.url = "{{site.url}}{{page.url}}";
+            this.page.identifier = "{{page.id}}";
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zhou-huan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus -- zhouhuan.</a></noscript>
+    {% endif %}
+{% endif %} -->
+
+
+{% if site.anchorjs %}
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+{% endif %}
+
+{% if site.baidu_tongji_id %}
+<script>
+    var _baId = '{{ site.baidu_tongji_id }}';
+
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+{% endif %}
+
+<script>
+    var checkTag = document.querySelector('#check-this-tag')
+    var tag = checkTag.getAttribute('data-tag')
+    var href = location.href
+    var target = 'https://zhou-huan.github.io/'
+    if (/localhost/.test(href)) {
+        target = 'http://localhost:4000/'
+    }
+    checkTag.addEventListener('click', function() {
+        sessionStorage.setItem('current_tag', tag)
+        location.href = target
+    })
+</script>

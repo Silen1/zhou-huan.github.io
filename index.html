@@ -1,0 +1,123 @@
+---
+layout: default
+description: "周欢的个人博客"
+---
+
+{% include intro-header.html type='page' short=true %}
+
+<div id="zhouhuan-archive">
+	<div class="tags-panel col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<span><b>全部文集</b><i><sup>{{site.posts.size}}</sup></i></span>
+		{% capture panel_tags %}
+		{% for tag in site.tags %}
+			<span data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"><b>{{tag[0]}}</b><i><sup>{{tag[1].size}}</sup></i></span>
+		{% endfor %}
+		{% endcapture %}
+		{{ panel_tags | split:'</span>' | sort | join:'</span>' }}
+	</div>
+
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		{% for post in site.posts %}
+			{% assign _year = post.date | date: '%Y' %}
+			{% if _year != post_year %}
+					<p class="home-year">{{_year}}</p>
+					{% assign post_year = _year %}
+			{% endif %}
+			{% assign _month = post.date | date: '%B' %}
+			{% if _month != post_month %}
+					<p class="home-month" data-year={{_year}}>{{_month}}</p>
+					{% assign post_month = _month %}
+			{% endif %}
+			<div data-tag={{post.tags}} data-year={{_year}} data-month={{_month}} class="zhouhuan-post">
+					<p class="link-box">
+						<a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+					</p>
+					<p class="post-date">{{ post.date  | date: "%Y.%m.%d" }}</p>
+			</div>
+		{% endfor %}
+	</div>
+
+	<!-- {% capture panel_tags %}
+	{% for tag in site.tags %}
+		<section class="zhouhuan-tag col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}">
+			<div class="tag-wrapper" data-tag={{tag[0]}}>
+				{% assign this_tag = tag[0] %}
+				<p class="zhouhuan-tag-title">&raquo;&nbsp;<span>{{this_tag}}</span></p>
+				<div class="zhouhuan-post-box">
+					{% for post in site.posts %}
+						{% if post.tags[0] == this_tag %}
+							<div data-tag={{post.tags}} class="zhouhuan-post">
+									<a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+									<p class="post-date">{{ post.date  | date: "%Y.%m.%d" }}</p>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endfor %}
+	{% endcapture %}
+	{{ panel_tags | split:'</section>' | sort | join:'</section>' }} -->
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var tags = document.querySelectorAll('.tags-panel span')
+		var posts = document.querySelectorAll('.zhouhuan-post')
+		var months = document.querySelectorAll('.home-month')
+		var years = document.querySelectorAll('.home-year')
+		var currentTag = sessionStorage.getItem('current_tag') || '全部文集'
+		select()
+
+		// 处理文集标签选中状态
+		tags.forEach(function(tag) {
+			if (tag.querySelector('b').innerText === currentTag) {
+				tag.className = 'active-tag'
+			}
+			tag.addEventListener('click', function(e) {
+				document.querySelector('.active-tag').className = ''
+				tag.className = 'active-tag'
+				currentTag = tag.querySelector('b').innerText
+				sessionStorage.setItem('current_tag', currentTag)
+				select()
+			})
+		})
+
+		// 处理博客列表以match选中的文集标签
+		function select() {
+			posts.forEach(function(post) {
+				if (currentTag === '全部文集') {
+					post.style.display = 'block'
+				} else if (post.getAttribute('data-tag') !== currentTag) {
+					post.style.display = 'none'
+				} else {
+					post.style.display = 'block'
+				}
+			})
+			var postsArr = Array.apply(null, posts)
+			months.forEach(function(month) {
+				var _month = month.innerText
+				var matchPosts = postsArr.filter(function(post) {
+					return post.getAttribute('data-month') === _month && post.style.display !== 'none' && post.getAttribute('data-year') === month.getAttribute('data-year')
+				})
+				if (matchPosts.length === 0) {
+					month.style.display = 'none'
+				} else {
+					month.style.display = 'block'
+				}
+			})
+			var monthsArr = Array.apply(null, months)
+			years.forEach(function(year) {
+				var _year = year.innerText
+				var matchMonths = monthsArr.filter(function(month) {
+					return month.getAttribute('data-year') === _year && month.style.display !== 'none'
+				})
+				if (matchMonths.length === 0) {
+					year.style.display = 'none'
+				} else {
+					year.style.display = 'block'
+				}
+			})
+		}
+	})
+</script>
