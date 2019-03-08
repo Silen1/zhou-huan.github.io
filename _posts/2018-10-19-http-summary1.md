@@ -76,5 +76,3 @@ HTTP权威指南里是这么说的：
 **GET requests is only used to request data (not modify)**
 
 我认为这一点也不是绝对的。如果使用GET方法来请求一个服务端接口，该接口也可以在接收到请求时对数据库进行相应修改，这取决于部署在应用服务器上的服务端代码功能。所以我觉得w3schools这么说，应该只是从语义上规范我们最好这么来做。
-
-我不知道HTTP的底层实现里有没有体现“GET requests is only used to request data (not modify)”，或者说，我不知道“GET requests is only used to request data (not modify)”究竟是怎么体现的。如果你知道这一点，或者有其他观点，非常希望能够在评论区里留言！
